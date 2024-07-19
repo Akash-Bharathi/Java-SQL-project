@@ -1,0 +1,36 @@
+tblusers - userid, username,password
+tblemp - empid,empname,empdeptcode,empsalary
+tbldepts - deptcode,deptname
+
+
+MySQL:-
+create database java9amcrud;
+
+use java9amcrud;
+create table tblusers(
+	userid int auto_increment primary key,
+	username varchar(50)unique not null,
+	password varchar(50) not null
+);
+
+insert into tblusers(username,password) values("admin","admin");
+
+create table tbldepts(
+	deptid int auto_increment primary key,	
+	deptname varchar(50) not null unique
+);
+insert into tbldepts(deptname) values ("Developer");
+insert into tbldepts(deptname) values ("Accounts");
+insert into tbldepts(deptname) values ("Human Resource");
+insert into tbldepts(deptname) values ("Marketing Executive");
+insert into tbldepts(deptname) values ("Test Engineer");
+
+create table tblemp(
+	empid int auto_increment primary key,
+	empname varchar(50) not null,
+	empdeptid int not null,
+	empsalary int not null,
+	index(empdeptid),
+	foreign key(empdeptid) references tbldepts(deptid)
+);
+ 
